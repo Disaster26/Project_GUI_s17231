@@ -9,6 +9,7 @@ public class Pomieszczenie implements Comparable<Pomieszczenie> {
     private static int id_nadawane=1;
     private Osoba owner;
     private boolean is_available;
+    private boolean czywynajete;
     private Date data_rozp;
     private int dni_wynajmu;
 
@@ -17,6 +18,9 @@ public class Pomieszczenie implements Comparable<Pomieszczenie> {
     public Pomieszczenie(double capacity, boolean is_available){
         this.capacity=capacity;
         this.is_available=is_available;
+        this.dni_wynajmu=0;
+        przedmioty=new ArrayList<>();
+        czywynajete=false;
         id=id_nadawane;
         id_nadawane++;
     }
@@ -25,9 +29,17 @@ public class Pomieszczenie implements Comparable<Pomieszczenie> {
         return przedmioty;
     }
 
+    public void setCzywynajete(boolean czywynajete) {
+        this.czywynajete = czywynajete;
+    }
+
     public Pomieszczenie(double dlugosc, double szerokosc, double wysokosc, boolean is_available){
         this.capacity=dlugosc*szerokosc*wysokosc;
         this.is_available=is_available;
+        this.dni_wynajmu=0;
+
+        przedmioty=new ArrayList<>();
+        czywynajete=false;
         id=id_nadawane;
 
         id_nadawane++;
@@ -60,17 +72,61 @@ public class Pomieszczenie implements Comparable<Pomieszczenie> {
         przedmioty.remove(i-1);
     }
 
+    public void setOwner(Osoba owner) {
+        this.owner = owner;
+    }
+
+    public void setData_rozp(Date data_rozp) {
+        this.data_rozp = data_rozp;
+    }
+
+    public void setDni_wynajmu(int dni_wynajmu) {
+        this.dni_wynajmu = dni_wynajmu;
+    }
+
+    public void setPrzedmioty(ArrayList<Przedmiot> przedmioty) {
+
+        this.przedmioty = przedmioty;
+    }
+
+    public double getCapacity() {
+
+        return capacity;
+    }
+
+    public Osoba getOwner() {
+        return owner;
+    }
+
+    public Date getData_rozp() {
+
+        return data_rozp;
+    }
+
+    public int getDni_wynajmu() {
+        return dni_wynajmu;
+    }
+
+    public boolean isCzywynajete() {
+        return czywynajete;
+    }
+
     public void wynajmij(Osoba os, int dni){
         data_rozp=new Date();
         dni_wynajmu=dni;
+
         if(is_available){
-            if(owner.equals(null))
-                owner=os;
+            if(owner==null) {
+                owner = os;
+                czywynajete = true;
+            }
+
             else
                 System.out.println("To pomieszczenie jest już wynajmowane");
         }
         else
             System.out.println("To pomieszczenie jest aktualnie w remoncie");
+            System.out.println("");
     }
 
     @Override

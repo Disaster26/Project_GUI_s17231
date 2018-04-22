@@ -13,7 +13,7 @@ public class Osoba  {
     private Date first_rent;
 
     public Date getFirst_rent() throws NeverRentException {
-        if(first_rent.equals(null))
+        if(first_rent==null)
             throw new NeverRentException("Ta osoba nigdy nie wynajmowała pomieszczenia");
         else
             return first_rent;
@@ -28,21 +28,19 @@ public class Osoba  {
     }
 
 
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
     @Override
     public String toString() {
-        try {
             return "Osoba{" +
                     "imie='" + imie + '\'' +
                     ", nazwisko='" + nazwisko + '\'' +
                     ", pesel='" + pesel + '\'' +
                     ", adres_zamieszkania='" + adres_zamieszkania + '\'' +
                     ", data_urodzenia='" + data_urodzenia + '\'' +
-                    ", first_rent=" + getFirst_rent() +
                     '}';
-        } catch (NeverRentException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public String getImie() {

@@ -8,10 +8,12 @@ public class Przedmiot implements Comparable<Przedmiot> {
 
     public Przedmiot(double capacity, String nazwa){
         this.volume=capacity;
+        this.nazwa=nazwa;
     }
 
     public Przedmiot(double dlugosc, double szerokosc, double wysokosc, String nazwa){
         this.volume=dlugosc*szerokosc*wysokosc;
+        this.nazwa=nazwa;
     }
 
     @Override
