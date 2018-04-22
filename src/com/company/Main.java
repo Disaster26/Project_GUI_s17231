@@ -108,7 +108,7 @@ public class Main {
                             i++;
                         }
                         check_option = czyt.nextInt();
-                        if (check_option < lista_os.size())
+                        if (check_option>0 && check_option < lista_os.size())
                             login = lista_os.get(check_option - 1);
                         else {
                             System.out.println("Wybrałeś złą opcje, logowanie na pierwszego użytkownika");
@@ -191,9 +191,13 @@ public class Main {
                         }
                         System.out.println("Wybierz przedmiot: ");
                         check_option=czyt.nextInt();
-                        if(check_option>0&&check_option<=i) {
+                        if(check_option>0&&check_option<i) {
                             temp=przedmioty.get(check_option-1);
                             przedmioty.remove(check_option-1);
+                        }
+                        else {
+                            System.out.println("Nie ma takiego przedmiotu");
+                            break;
                         }
                         System.out.println("Wybierz pomieszczenie: ");
                         i=1;
