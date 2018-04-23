@@ -82,7 +82,7 @@ public class Main {
 
         //START APLIKACJI
         Scanner czyt=new Scanner(System.in);
-        int check_option;
+        int check_option=11;
         Osoba login=null;
 
         do{
@@ -96,7 +96,13 @@ public class Main {
             System.out.println("5. Zapisz stan magazynu do pliku");
             System.out.println("6. Włóż przedmiot do magazynu");
             System.out.println("7. Wyjmij z magazynu");
-            check_option=czyt.nextInt();
+            try {
+                check_option = czyt.nextInt();
+            }
+            catch(InputMismatchException e){
+                System.out.println("Wpisales zla opcje, konczymy na dzis");
+                System.exit(1);
+            }
             checkexp(magazyn); //SPRAWDZANIE UPLWYU CZASU WYNAJMU
             switch (check_option) {
                 case 1:
